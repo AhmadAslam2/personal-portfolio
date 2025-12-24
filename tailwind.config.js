@@ -23,6 +23,13 @@ module.exports = {
       },
       animation: {
         "spin-slow": "spin 8s linear infinite",
+        "sparkle": "sparkle 2s ease-in-out infinite",
+      },
+      keyframes: {
+        sparkle: {
+          "0%, 100%": { opacity: "0", transform: "scale(0)" },
+          "50%": { opacity: "1", transform: "scale(1)" },
+        },
       },
       backgroundImage: {
         circularLight:

@@ -6,7 +6,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import lightBulb from "../../public/images/svgs/miscellaneous_icons_1.svg";
-import profilePic from "../../public/images/profile/developer-pic-1.png";
+import StripeAnimation from "@/components/StripeAnimation";
 import TransitionEffect from "@/components/TransitionEffect";
 
 
@@ -29,14 +29,8 @@ export default function Home() {
       >
         <Layout className="!pt-0 md:!pt-16 sm:!pt-16">
           <div className="flex w-full items-start justify-between md:flex-col">
-            <div className="w-1/2 lg:hidden md:inline-block md:w-full">
-              <Image
-                src={profilePic}
-                alt="Ahmad Aslam"
-                className="h-auto w-full"
-                sizes="100vw"
-                priority
-              />
+            <div className="w-[45%] lg:hidden md:inline-block md:w-full h-[400px] md:h-[300px] mb-16">
+              <StripeAnimation />
             </div>
             <div className="flex w-1/2 flex-col items-center self-center lg:w-full lg:text-center">
               <AnimatedText
@@ -44,7 +38,7 @@ export default function Home() {
                 className="!text-left !text-6xl xl:!text-5xl lg:!text-center lg:!text-6xl md:!text-5xl sm:!text-3xl"
               />
               <p className="my-4 text-base font-medium md:text-sm sm:!text-xs">
-              Skilled Full Stack Developer with 4+ years of experience building scalable web & mobile applications using React, React Native, and Next.js. Passionate about delivering robust, user-centric solutions with expertise spanning frontend, backend, and AI engineering.
+              Full-stack developer with 5+ years of experience helping startups and businesses build scalable web and mobile products. I work across the entire product lifecycle, from architecture and development to AI feature integration, with a focus on performance, usability, and long-term maintainability.
               </p>
               <div className="mt-2 flex items-center self-start lg:self-center">
                 <Link
@@ -76,7 +70,7 @@ export default function Home() {
         </Layout>
 
         <HireMe />
-        <div className="absolute right-8 bottom-8 inline-block w-24 md:hidden">
+        <div className="absolute right-8 bottom-8 inline-block w-14 md:hidden">
           <Image
             className="relative h-auto w-full"
             src={lightBulb}

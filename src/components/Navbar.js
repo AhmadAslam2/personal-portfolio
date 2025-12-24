@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Logo from "./Logo";
 import { useRouter } from "next/router";
 import {
-  DribbbleIcon,
   GithubIcon,
   LinkedInIcon,
   MoonIcon,
@@ -119,16 +118,6 @@ const Navbar = () => {
         >
           <LinkedInIcon />
         </motion.a>
-        <motion.a
-          target={"_blank"}
-          className="w-6 mx-3"
-          href="https://ahmadaslam2.github.io/personal-website"
-          whileHover={{ y: -2 }}
-          whileTap={{ scale: 0.9 }}
-          aria-label="Checkout my portfolio"
-        >
-          <DribbbleIcon />
-        </motion.a>
 
         <button
           onClick={() => setMode(mode === "light" ? "dark" : "light")}
@@ -184,16 +173,6 @@ const Navbar = () => {
           aria-label="Checkout my linkedin profile"
         >
           <LinkedInIcon />
-        </motion.a>
-        <motion.a
-          target={"_blank"}
-          className="w-6 m-1 mx-3 sm:mx-1"
-          href="https://ahmadaslam2.github.io/personal-website"
-          whileHover={{ y: -2 }}
-          whileTap={{ scale: 0.9 }}
-          aria-label="Checkout my portfolio"
-        >
-          <DribbbleIcon />
         </motion.a>
 
         <button
