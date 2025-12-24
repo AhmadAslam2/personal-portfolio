@@ -3,12 +3,13 @@ import React from "react";
 
 const RotatingText = ({ text, className = "" }) => {
   // Radius for the circular path - matches CircularText positioning
-  // Desktop: w-48 = 192px, center at 96,96, radius ~58px (30% of 192px)
-  // Mobile: w-24 = 96px, center at 48,48, radius ~29px (30% of 96px)
+  // Both mobile and desktop use the same 192x192 viewBox
+  // Mobile: w-48 = 192px, center at 96,96, radius ~58px (30% of 192px)
+  // Desktop: w-24 = 96px (scaled), center at 96,96, radius ~29px (scaled proportionally)
   const radiusDesktop = 58;
-  const radiusMobile = 29;
+  const radiusMobile = 58; // Same radius in viewBox coordinates
   const centerDesktop = 96;
-  const centerMobile = 48;
+  const centerMobile = 96; // Same center in viewBox coordinates (192x192)
   
   return (
     <svg
@@ -48,7 +49,7 @@ const RotatingText = ({ text, className = "" }) => {
           style={{
             fontFamily: 'var(--font-mont), sans-serif',
             fontWeight: 'bold',
-            fontSize: '9px',
+            fontSize: '17px',
           }}
         >
           {text}

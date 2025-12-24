@@ -25,22 +25,22 @@ export default function Home() {
 
       <TransitionEffect />
       <article
-        className={`flex min-h-screen items-center text-dark dark:text-light sm:items-start`}
+        className={`flex min-h-screen items-center text-dark dark:text-light sm:items-start pb-[136px]`}
       >
-        <Layout className="!pt-0 md:!pt-16 sm:!pt-16">
-          <div className="flex w-full items-start justify-between md:flex-col">
-            <div className="w-[45%] lg:hidden md:inline-block md:w-full h-[400px] md:h-[300px] mb-16">
+        <Layout className="!pt-0 !pb-4 md:!pt-16 md:!pb-4 sm:!pt-8 sm:!pb-4">
+          <div className="flex w-full items-start justify-between gap-8 md:flex-col md:gap-6 sm:gap-6">
+            <div className="w-[45%] lg:hidden md:inline-block md:w-full h-[400px] md:h-[350px] sm:h-[280px] mb-8 md:mb-8 sm:my-6 flex items-center justify-center">
               <StripeAnimation />
             </div>
-            <div className="flex w-1/2 flex-col items-center self-center lg:w-full lg:text-center">
+            <div className="flex w-1/2 flex-col items-center self-center lg:w-full lg:text-center md:w-full">
               <AnimatedText
                 text="Building intelligent solutions with code."
                 className="!text-left !text-6xl xl:!text-5xl lg:!text-center lg:!text-6xl md:!text-5xl sm:!text-3xl"
               />
-              <p className="my-4 text-base font-medium md:text-sm sm:!text-xs">
+              <p className="my-4 text-base font-medium md:text-sm sm:!text-xs md:my-3 sm:my-2">
               Full-stack developer with 5+ years of experience helping startups and businesses build scalable web and mobile products. I work across the entire product lifecycle, from architecture and development to AI feature integration, with a focus on performance, usability, and long-term maintainability.
               </p>
-              <div className="mt-2 flex items-center self-start lg:self-center">
+              <div className="mt-2 flex items-center self-start lg:self-center md:flex-col md:items-center md:w-full md:gap-3 sm:gap-2">
                 <Link
                   // whileHover={{
                   //   cursor: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='font-size:24px;'><text y='50%'>👆</text></svg>"), auto`,
@@ -50,17 +50,17 @@ export default function Home() {
                   className={`flex items-center rounded-lg border-2 border-solid bg-dark p-2.5 px-6 text-lg font-semibold
             capitalize text-light hover:border-dark hover:bg-transparent hover:text-dark 
             dark:bg-light dark:text-dark dark:hover:border-light dark:hover:bg-dark dark:hover:text-light
-            md:p-2 md:px-4 md:text-base
+            md:p-2 md:px-4 md:text-base sm:p-1.5 sm:px-3 sm:text-sm
              `}
                   download
                 >
-                  Resume <LinkArrow className="ml-1 !w-6 md:!w-4" />
+                  Resume <LinkArrow className="ml-1 !w-6 md:!w-4 sm:!w-3" />
                 </Link>
 
                 <Link
                   href="mailto:ahmadaslam1999@gmail.com"
                   className="ml-4 text-lg font-medium capitalize text-dark underline 
-                  dark:text-light md:text-base"
+                  dark:text-light md:text-base md:ml-0 sm:text-sm"
                 >
                   Contact
                 </Link>

@@ -6,8 +6,15 @@ import { SiNextdotjs, SiNestjs, SiMongodb, SiFirebase, SiGraphql, SiAmazonwebser
 import { TbBrandReactNative } from "react-icons/tb";
 
 // Custom Gemini Icon Component
-const GeminiIcon = ({ isActive, className }) => {
-  const size = isActive ? 28 : 32;
+const GeminiIcon = ({ isActive, className, squareSize }) => {
+  // Calculate responsive size based on squareSize, matching other icons
+  let size;
+  if (squareSize < 60) {
+    size = isActive ? 18 : 22;
+  } else {
+    size = isActive ? 28 : 36;
+  }
+  
   return (
     <div className={className} style={{ width: `${size}px`, height: `${size}px` }}>
       {isActive ? (
@@ -107,14 +114,99 @@ const StripeAnimation = () => {
   const [activeIndices, setActiveIndices] = useState([]);
   const [gridItems, setGridItems] = useState([]);
   const [hoveredId, setHoveredId] = useState(null);
+  const [dimensions, setDimensions] = useState({ squareSize: 80, gap: 16 });
   const sequenceIndexRef = useRef(0);
+  const containerRef = useRef(null);
+
+  // Calculate responsive dimensions based on container size
+  useEffect(() => {
+    const calculateDimensions = () => {
+      // Use window width as fallback if container not ready
+      const containerWidth = containerRef.current?.offsetWidth || window.innerWidth;
+      const containerHeight = containerRef.current?.offsetHeight || window.innerHeight;
+      const windowWidth = window.innerWidth;
+      
+      // Responsive sizing based on window width (for breakpoint) but consider container constraints
+      let squareSizeByWidth, gap;
+      
+      if (windowWidth < 320) {
+        // Very small mobile
+        squareSizeByWidth = 40;
+        gap = 8;
+      } else if (windowWidth < 480) {
+        // Small mobile
+        squareSizeByWidth = 50;
+        gap = 10;
+      } else if (windowWidth < 640) {
+        // Medium mobile / small tablet
+        squareSizeByWidth = 60;
+        gap = 12;
+      } else if (windowWidth < 768) {
+        // Tablet
+        squareSizeByWidth = 70;
+        gap = 14;
+      } else {
+        // Desktop
+        squareSizeByWidth = 78;
+        gap = 16;
+      }
+      
+      // Calculate squareSize based on height constraint (only for mobile/tablet, not desktop)
+      let squareSize;
+      
+      if (windowWidth >= 768) {
+        // Desktop: use width-based size only (no height constraint)
+        squareSize = squareSizeByWidth;
+      } else {
+        // Mobile/Tablet: apply height constraint to prevent overflow
+        // Grid has 5 rows, so: containerHeight = 5 * squareSize + 4 * gap
+        // Therefore: squareSize = (containerHeight - 4 * gap) / 5
+        const maxRows = 5;
+        // Account for padding: p-2 (8px top+bottom = 16px) on larger screens, sm:p-1 (4px top+bottom = 8px) on small screens
+        const verticalPadding = windowWidth < 640 ? 8 : 16;
+        const availableHeight = containerHeight - verticalPadding;
+        const squareSizeByHeight = Math.floor((availableHeight - (maxRows - 1) * gap) / maxRows);
+        
+        // Use the smaller of the two to ensure it fits both width and height
+        // Ensure minimum size for readability (at least 30px)
+        squareSize = Math.max(30, Math.min(squareSizeByWidth, squareSizeByHeight));
+      }
+      
+      setDimensions({ squareSize, gap });
+    };
+
+    // Initial calculation
+    calculateDimensions();
+    
+    // Use ResizeObserver for better performance
+    let resizeObserver;
+    if (containerRef.current && window.ResizeObserver) {
+      resizeObserver = new ResizeObserver(() => {
+        calculateDimensions();
+      });
+      resizeObserver.observe(containerRef.current);
+    }
+    
+    // Fallback to window resize listener
+    const handleResize = () => {
+      calculateDimensions();
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   // Generate hardcoded grid structure
   useEffect(() => {
     const rows = 5;
     const cols = 5;
-    const squareSize = 80;
-    const gap = 16;
+    const { squareSize, gap } = dimensions;
     
     const items = [];
     let id = 0;
@@ -150,7 +242,7 @@ const StripeAnimation = () => {
     }
 
     setGridItems(items);
-  }, []);
+  }, [dimensions]);
 
   // Activate items based on hardcoded sequence with smooth transitions
   useEffect(() => {
@@ -198,15 +290,17 @@ const StripeAnimation = () => {
   }, [gridItems]);
 
   // Calculate grid container dimensions
-  const squareSize = 80;
-  const gap = 16;
+  const { squareSize, gap } = dimensions;
   const maxCols = 5;
   const maxRows = 5;
   const containerWidth = maxCols * squareSize + (maxCols - 1) * gap;
   const containerHeight = maxRows * squareSize + (maxRows - 1) * gap;
 
   return (
-    <div className="relative h-full w-full overflow-visible rounded-lg flex items-center justify-center p-2">
+    <div 
+      ref={containerRef}
+      className="relative h-full w-full overflow-visible rounded-lg flex items-center justify-center p-2 sm:p-1"
+    >
       <div 
         className="relative mx-auto" 
         style={{ 
@@ -224,19 +318,21 @@ const StripeAnimation = () => {
           return (
             <motion.div
               key={item.id}
-              className={`rounded-lg flex items-center justify-center relative cursor-pointer ${
+              className={`rounded-lg flex items-center justify-center relative cursor-pointer touch-none ${
                 isActive
                   ? "bg-white shadow-lg shadow-gray-400/20 dark:shadow-gray-900/30 z-10 border border-white/20"
                   : "bg-gray-100/60 dark:bg-transparent border border-gray-600/50 dark:border-gray-300/50 z-0"
               }`}
               onMouseEnter={() => setHoveredId(item.id)}
               onMouseLeave={() => setHoveredId(null)}
+              onTouchStart={() => setHoveredId(item.id)}
+              onTouchEnd={() => setHoveredId(null)}
               style={{
                 position: 'absolute',
                 left: `${item.x}px`,
                 top: `${item.y}px`,
-                width: '80px',
-                height: '80px',
+                width: `${squareSize}px`,
+                height: `${squareSize}px`,
               }}
               initial={false}
               animate={{
@@ -265,14 +361,19 @@ const StripeAnimation = () => {
                 {skill.isCustom ? (
                   <IconComponent
                     isActive={isActive}
+                    squareSize={squareSize}
                     className={`transition-all duration-300 flex items-center justify-center ${
-                      isActive ? "w-[28px] h-[28px]" : "w-[32px] h-[32px]"
+                      isActive 
+                        ? squareSize < 60 ? "w-[18px] h-[18px]" : "w-[28px] h-[28px]"
+                        : squareSize < 60 ? "w-[22px] h-[22px]" : "w-[36px] h-[36px]"
                     }`}
                   />
                 ) : (
                   <IconComponent
                     className={`transition-all duration-300 ${
-                      isActive ? "text-[28px]" : "text-[36px]"
+                      isActive 
+                        ? squareSize < 60 ? "text-[18px]" : "text-[28px]"
+                        : squareSize < 60 ? "text-[22px]" : "text-[36px]"
                     }`}
                     style={{
                       color: isActive ? skill.color : "#9CA3AF",
@@ -281,7 +382,9 @@ const StripeAnimation = () => {
                 )}
               </motion.div>
               <motion.span
-                className="absolute text-[11px] font-semibold text-center px-1 leading-tight text-gray-800 dark:text-gray-800 whitespace-nowrap"
+                className={`absolute font-semibold text-center px-1 leading-tight text-gray-800 dark:text-gray-800 whitespace-nowrap ${
+                  squareSize < 60 ? "text-[8px]" : squareSize < 70 ? "text-[9px]" : "text-[10px]"
+                }`}
                 initial={false}
                 animate={{
                   opacity: isActive ? 1 : 0,
@@ -289,7 +392,7 @@ const StripeAnimation = () => {
                   x: '-50%',
                 }}
                 style={{
-                  bottom: '8px',
+                  bottom: squareSize < 60 ? '4px' : '8px',
                   left: '50%',
                 }}
                 transition={{
