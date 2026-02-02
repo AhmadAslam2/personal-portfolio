@@ -62,34 +62,32 @@ export default function About() {
               </h2>
 
               <p className="font-medium">
-                Hi, I&apos;m <strong>Ahmad Aslam</strong> — a software developer
-                who helps founders turn ideas into reliable, real-world
-                products.
+                Hi, I&apos;m <strong>Ahmad Aslam</strong> — a React Native
+                mobile application developer helping startups and businesses
+                turn ideas into high-quality iOS and Android apps.
               </p>
 
               <p className="my-4 font-medium">
-                Over the past 5+ years, I&apos;ve worked across web and mobile
-                projects, building systems that are not just functional, but
-                maintainable, scalable, and ready for real users. I care deeply
-                about clean architecture, thoughtful product decisions, and
-                writing code that ages well.
+                With 5+ years of experience, I&apos;ve built and shipped
+                production-ready mobile apps used by real users. I focus on
+                clean architecture, scalable codebases, and smooth user
+                experiences that hold up as products grow.
               </p>
 
               <p className="font-medium">
-                I enjoy working end-to-end — from shaping early product flows to
-                shipping production-ready applications. Lately, I&apos;ve been
-                especially interested in how intelligent systems and AI-powered
-                features can enhance everyday user experiences in practical
-                ways.
+                I work end-to-end on mobile products — from refining
+                requirements and app flows to development, API integration,
+                performance optimization, and store releases. My goal is always
+                to build apps that are reliable, maintainable, and easy to
+                evolve.
               </p>
 
               <p className="mt-4 font-medium">
-                Based in Lahore, Pakistan, I collaborate with teams remotely and
-                independently, bringing a product-focused, full-stack
-                perspective to every project.
+                Based in Lahore, Pakistan, I collaborate remotely with clients
+                worldwide, offering a product-driven mindset and clear
+                communication throughout the development process.
               </p>
             </div>
-
             <div
               className="relative col-span-3 h-max rounded-2xl border-2 border-solid border-dark 
             bg-light p-8 dark:border-light dark:bg-dark
@@ -117,7 +115,7 @@ export default function About() {
             >
               <div className="flex flex-col items-end justify-center xl:items-center">
                 <span className="inline-block text-7xl font-bold md:text-6xl sm:text-5xl xs:text-4xl">
-                  <AnimatedNumberFramerMotion value={13} />+
+                  <AnimatedNumberFramerMotion value={8} />+
                 </span>
                 <h2
                   className="mb-4 text-xl font-medium capitalize text-dark/75 dark:text-light/75 

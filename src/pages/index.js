@@ -9,9 +9,7 @@ import lightBulb from "../../public/images/svgs/miscellaneous_icons_1.svg";
 import StripeAnimation from "@/components/StripeAnimation";
 import TransitionEffect from "@/components/TransitionEffect";
 
-
 export default function Home() {
-  
   return (
     <>
       <Head>
@@ -34,11 +32,16 @@ export default function Home() {
             </div>
             <div className="flex w-1/2 flex-col items-center self-center lg:w-full lg:text-center md:w-full">
               <AnimatedText
-                text="Building intelligent solutions with code."
-                className="!text-left !text-6xl xl:!text-5xl lg:!text-center lg:!text-6xl md:!text-5xl sm:!text-3xl"
+                // text="Building mobile experiences that work."
+                text="Turning ideas into mobile experiences."
+                className="!text-left !text-[58px] xl:!text-5xl lg:!text-center lg:!text-[58px] md:!text-5xl sm:!text-3xl"
               />
               <p className="my-4 text-base font-medium md:text-sm sm:!text-xs md:my-3 sm:my-2">
-              Full-stack developer with 5+ years of experience helping startups and businesses build scalable web and mobile products. I work across the entire product lifecycle, from architecture and development to AI feature integration, with a focus on performance, usability, and long-term maintainability.
+                React Native mobile app developer with 5+ years of experience
+                building production-ready iOS and Android apps for startups. I
+                work across the entire product lifecycle, from architecture and
+                development to AI feature integration, with a focus on
+                performance, usability, and long-term maintainability.
               </p>
               <div className="mt-2 flex items-center self-start lg:self-center md:flex-col md:items-center md:w-full md:gap-3 sm:gap-2">
                 <Link

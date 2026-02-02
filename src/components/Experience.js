@@ -1,10 +1,6 @@
 import React, { useRef } from "react";
-import {
-  motion,
-  useScroll,
-} from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import LiIcon from "./LiIcon";
-
 
 const Details = ({ position, company, companyLink, time, address, work }) => {
   const ref = useRef(null);
@@ -32,14 +28,16 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
         <span className="capitalize text-dark/75 font-medium dark:text-light/50 xs:text-sm">
           {time} | {address}
         </span>
-        <p className="font-medium w-full md:text-sm"> {work}</p>
+        <p className="font-medium w-full md:text-sm whitespace-pre-line">
+          {" "}
+          {work}
+        </p>
       </motion.div>
     </li>
   );
 };
 
 const Experience = () => {
-
   const ref = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -48,58 +46,66 @@ const Experience = () => {
   });
 
   return (
+    <div className="my-64">
+      <h2 className="font-bold text-8xl mb-32 w-full text-center md:text-6xl xs:text-4xl md:mb-16">
+        Experience
+      </h2>
 
-      <div className="my-64">
-        <h2 className="font-bold text-8xl mb-32 w-full text-center md:text-6xl xs:text-4xl md:mb-16">
-          Experience
-        </h2>
-
-        <div ref={ref} className="relative w-[75%] mx-auto lg:w-[90%] md:w-full">
-          <motion.div
-            className="absolute left-9 top-0 w-[4px] md:w-[2px] md:left-[30px] xs:left-[20px] h-full bg-dark 
+      <div ref={ref} className="relative w-[75%] mx-auto lg:w-[90%] md:w-full">
+        <motion.div
+          className="absolute left-9 top-0 w-[4px] md:w-[2px] md:left-[30px] xs:left-[20px] h-full bg-dark 
             origin-top  dark:bg-primaryDark dark:shadow-3xl"
-            style={{ scaleY: scrollYProgress }}
+          style={{ scaleY: scrollYProgress }}
+        />
+        <ul className="w-full flex flex-col items-start justify-between ml-4 xs:ml-2">
+          <Details
+            position="Senior Mobile App Developer"
+            company="Freelancer"
+            companyLink="#"
+            time="December 2024 - Present"
+            address="Lahore, Pakistan"
+            work="Building and maintaining React Native iOS & Android apps for startups and small teams. Owning features end-to-end, from implementation and performance improvements to releases.Working directly with founders to scope work and ship features efficiently"
           />
-          <ul className="w-full flex flex-col items-start justify-between ml-4 xs:ml-2">
-            <Details
-              position="Frontend & Mobile Developer"
-              company="Tkxel"
-              companyLink="https://tkxel.com"
-              time="March 2024 - Present"
-              address="Lahore, Pakistan"
-              work="Developed offline support for a security mobile application, significantly improving usability and performance. Designed and implemented an SVG rendering and editing module. Optimized state management and caching to enhance app responsiveness. Actively participated in scrum meetings and collaborated with backend and QA teams to deliver high-quality features."
-            />
 
-            <Details
-              position="Frontend & Mobile Developer"
-              company="Staunch"
-              companyLink="#"
-              time="August 2022 - March 2024"
-              address="Lahore, Pakistan"
-              work="Developed 3 web projects from scratch using React and Next.js. Independently developed 2 mobile applications using React Native. Actively participated in architectural meetings to devise optimal solutions. Developed and integrated complex standalone modules, such as a CSV parser with type checking. Collaborated with clients, design, and backend teams to ensure smooth project delivery."
-            />
+          <Details
+            position="Senior Mobile App Developer"
+            company="Tkxel"
+            companyLink="https://tkxel.com"
+            time="March 2024 - December 2024"
+            address="Lahore, Pakistan"
+            work="Developed offline support for a security mobile application, significantly improving usability and performance. Designed and implemented an SVG rendering and editing module. Optimized state management and caching to enhance app responsiveness. Actively participated in scrum meetings and collaborated with backend and QA teams to deliver high-quality features."
+          />
 
-            <Details
-              position="Frontend Developer"
-              company="Educative"
-              companyLink="https://educative.io"
-              time="August 2021 - May 2022"
-              address="Lahore, Pakistan"
-              work="Designed and developed a beginner-friendly project on the Educative platform, enabling users to gain hands-on learning experience. Actively contributed to sprint planning and agile workflows. Implemented complex features, including setting up a cloud-based IDE using Docker, enhancing the platform's development and learning experience."
-            />
+          <Details
+            position="Frontend & Mobile Developer"
+            company="Staunch"
+            companyLink="#"
+            time="August 2022 - March 2024"
+            address="Lahore, Pakistan"
+            work="Developed 3 web projects from scratch using React and Next.js. Independently developed 2 mobile applications using React Native. Actively participated in architectural meetings to devise optimal solutions. Developed and integrated complex standalone modules, such as a CSV parser with type checking. Collaborated with clients, design, and backend teams to ensure smooth project delivery."
+          />
 
-            <Details
-              position="Frontend Developer"
-              company="Helpling"
-              companyLink="https://helpling.com"
-              time="January 2021 - July 2021"
-              address="Berlin, Germany"
-              work="Developed and optimized 10+ reusable UI components, enhancing the application's overall user experience. Integrated a custom chat SDK, enabling real-time messaging and improving communication features within the app. Successfully deployed the web application to test users, gathering feedback and refining the product for full-scale release."
-            />
-          </ul>
-        </div>
-        </div>
-    );
+          <Details
+            position="Software Engineer"
+            company="Educative"
+            companyLink="https://educative.io"
+            time="August 2021 - May 2022"
+            address="Lahore, Pakistan"
+            work="Designed and developed a beginner-friendly project on the Educative platform, enabling users to gain hands-on learning experience. Actively contributed to sprint planning and agile workflows. Implemented complex features, including setting up a cloud-based IDE using Docker, enhancing the platform's development and learning experience."
+          />
+
+          <Details
+            position="Mobile App Developer"
+            company="Helpling"
+            companyLink="https://helpling.com"
+            time="January 2021 - July 2021"
+            address="Berlin, Germany"
+            work="Developed and optimized 10+ reusable UI components, enhancing the application's overall user experience. Integrated a custom chat SDK, enabling real-time messaging and improving communication features within the app. Successfully deployed the web application to test users, gathering feedback and refining the product for full-scale release."
+          />
+        </ul>
+      </div>
+    </div>
+  );
 };
 
 export default Experience;
