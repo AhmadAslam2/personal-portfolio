@@ -8,6 +8,7 @@ import {
   MoonIcon,
   PinterestIcon,
   SunIcon,
+  ToptalIcon,
   TwitterIcon,
 } from "./Icons";
 import { motion } from "framer-motion";
@@ -118,6 +119,17 @@ const Navbar = () => {
         >
           <LinkedInIcon />
         </motion.a>
+        <motion.a
+          target={"_blank"}
+          rel="noopener noreferrer"
+          className="w-6 mx-3"
+          href="https://www.toptal.com/developers/resume/ahmad-a#vZ8md3"
+          whileHover={{ y: -2 }}
+          whileTap={{ scale: 0.9 }}
+          aria-label="Hire me on Toptal"
+        >
+          <ToptalIcon />
+        </motion.a>
 
         <button
           onClick={() => setMode(mode === "light" ? "dark" : "light")}
@@ -173,6 +185,17 @@ const Navbar = () => {
           aria-label="Checkout my linkedin profile"
         >
           <LinkedInIcon />
+        </motion.a>
+        <motion.a
+          target={"_blank"}
+          rel="noopener noreferrer"
+          className="w-6 m-1 mx-3 sm:mx-1"
+          href="https://www.toptal.com/developers/resume/ahmad-a#vZ8md3"
+          whileHover={{ y: -2 }}
+          whileTap={{ scale: 0.9 }}
+          aria-label="Hire me on Toptal"
+        >
+          <ToptalIcon />
         </motion.a>
 
         <button

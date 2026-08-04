@@ -1,11 +1,9 @@
 import AnimatedText from "@/components/AnimatedText";
-import { HireMe } from "@/components/HireMe";
 import { LinkArrow } from "@/components/Icons";
 import Layout from "@/components/Layout";
+import { ToptalBadge } from "@/components/ToptalBadge";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
-import lightBulb from "../../public/images/svgs/miscellaneous_icons_1.svg";
 import StripeAnimation from "@/components/StripeAnimation";
 import TransitionEffect from "@/components/TransitionEffect";
 
@@ -23,9 +21,9 @@ export default function Home() {
 
       <TransitionEffect />
       <article
-        className={`flex min-h-screen items-center text-dark dark:text-light sm:items-start pb-[136px]`}
+        className={`relative flex min-h-[calc(100vh-6rem)] items-center overflow-hidden text-dark dark:text-light sm:items-start`}
       >
-        <Layout className="!pt-0 !pb-4 md:!pt-16 md:!pb-4 sm:!pt-8 sm:!pb-4">
+        <Layout className="!pt-0 !pb-4 md:!pt-16 md:!pb-4 sm:!pt-8 sm:!pb-4 -translate-y-10 md:translate-y-0">
           <div className="flex w-full items-start justify-between gap-8 md:flex-col md:gap-6 sm:gap-6">
             <div className="w-[45%] lg:hidden md:inline-block md:w-full h-[400px] md:h-[350px] sm:h-[280px] mb-8 md:mb-8 sm:my-6 flex items-center justify-center">
               <StripeAnimation />
@@ -72,13 +70,12 @@ export default function Home() {
           </div>
         </Layout>
 
-        <HireMe />
-        <div className="absolute right-8 bottom-8 inline-block w-14 md:hidden">
-          <Image
-            className="relative h-auto w-full"
-            src={lightBulb}
-            alt="Ahmad Aslam"
-          />
+        {/* <HireMe /> — kept in components for later reuse */}
+        <div
+          className="fixed left-10 bottom-6 z-10 md:hidden cursor-pointer"
+          href="https://www.toptal.com/developers/resume/ahmad-a#vZ8md3"
+        >
+          <ToptalBadge scale={0.65} />
         </div>
       </article>
     </>

@@ -55,6 +55,24 @@ export const LinkedInIcon = ({ className, ...rest }) => (
   </svg>
 );
 
+export const ToptalIcon = ({ className, ...rest }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 64 64"
+    {...rest}
+    className={`w-full h-auto ${className}`}
+  >
+    <path
+      fill="#204ECF"
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M53.7 26.8 27.2 0l-5.3 5.4 9.9 10.1-21.5 21.7 26.5 26.8 5.4-5.4-9.9-10.1L53.7 26.8zM22.2 38.1l16-16.1 3.3 3.3-16 16.1-3.3-3.3z"
+    />
+  </svg>
+);
+
 export const PinterestIcon = ({ className, ...rest }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -461,4 +479,3 @@ export const LinkArrow = ({ className, ...rest }) => (
     />
   </svg>
 );
-
